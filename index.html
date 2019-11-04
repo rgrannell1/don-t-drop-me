@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Don't Drop Me!</title>
+</head>
+<style>
+  :root {
+    --background-unsupported: #BDBDBD;
+    --background-normal: #66BB6A;
+    --background-freefall: #F44336;
+  }
+
+  * {
+    padding: 0px;
+    margin: 0px;
+  }
+
+  main {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    font-size: 2em;
+  }
+
+  main[data-mode="unsupported"] {
+    background: var(--background-unsupported);
+  }
+
+  main[data-mode="normal"] {
+    background: var(--background-normal);
+  }
+
+  main[data-mode="freefall"] {
+    background: var(--background-freefall);
+  }
+
+</style>
+<body>
+  <main data-mode="unsupported">
+
+  </main>
+</body>
+<script src="./index.js"></script>
+</html>
