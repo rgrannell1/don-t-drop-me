@@ -25,7 +25,8 @@ const constants = {
 
 constants.thresholds = {
   freefallLower: 0.8 * constants.GRAVITY,
-  freefallUpper: 1.2 * constants.GRAVITY
+  freefallUpper: 1.2 * constants.GRAVITY,
+  freefallEvents: calculateEvents()
 }
 
 const view = {}
@@ -33,6 +34,12 @@ const view = {}
 view.setText = (selector, content) => {
   $elem = document.querySelector(selector)
   $elem.textContent = content
+}
+
+const calculateEvents = () => {
+  const {interval} = deviceMotionEvent
+
+  return interval < 30 ? 3 : 1
 }
 
 const setMode = (state, viewData = {}) => {
@@ -53,23 +60,37 @@ const setMode = (state, viewData = {}) => {
 }
 
 const magnitude = acc => {
-  return Math.sqrt(Math.pow(acc.x, 2), Math.pow(acc.y, 2), Math.pow(acc.z, 2))
+  const ax = Math.pow(acc.x, 2)
+  const ay = Math.pow(acc.y, 2)
+  const az = Math.pow(acc.z, 2)
+
+  return Math.sqrt(ax + ay + az)
 }
 
 const isInFreefall = (magnitude, state) => {
-  return magnitude > constants.thresholds.freefallLower && magnitude < constants.thresholds.freefallUpper
+  const {
+    freefallLower,
+    freefallUpper
+  } = constants.thresholds
+  return magnitude > freefallLower && magnitude < freefallUpper
 }
 
 const onAcceleration = {}
 
-onAcceleration.freefall = () => {
-  setMode(constants.modes.freefall, {
-    face: constants.faces.freefall,
-    message: constants.messages.freefall.default
-  })
+onAcceleration.freefall = state => {
+  state.freefallEvents += 1
+
+  if (state.freefallEvents > constants.thresholds.freefallEvents) {
+    setMode(constants.modes.freefall, {
+      face: constants.faces.freefall,
+      message: constants.messages.freefall.default
+    })
+  }
 }
 
 onAcceleration.default = () => {
+  state.freefallEvents = 0
+
   setMode(constants.modes.normal, {
     face: constants.faces.normal,
     message: constants.messages.normal.default
@@ -77,9 +98,11 @@ onAcceleration.default = () => {
 }
 
 const detectFall = state => {
-  window.addEventListener('devicemotion', ({acceleration}) => {
-    if (isInFreefall(magnitude(event.acceleration), state)) {
-      onAcceleration.freefall()
+  window.addEventListener('devicemotion', event => {
+    const acc = event.acceleration
+
+    if (isInFreefall(magnitude(acc), state)) {
+      onAcceleration.freefall(state)
     } else {
       onAcceleration.default()
     }
@@ -98,7 +121,9 @@ const onNoSupport = () => {
   })
 }
 
-const state = {}
+const state = {
+  freefallEvents: 0
+}
 
 async function registerServiceWorker() {
   try {

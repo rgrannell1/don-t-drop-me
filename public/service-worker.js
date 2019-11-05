@@ -6,7 +6,7 @@ const cached = [
 ]
 
 const install = async () => {
-  const cache = await caches.open('sw-cache-v2')
+  const cache = await caches.open('sw-cache')
   await cache.addAll(cached)
   return self.skipWaiting()
 }
