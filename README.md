@@ -1,6 +1,8 @@
 
 # Don't Drop Me!
 
+I've long felt my phone should scream if I drop it, so here's a PWA for that purpose.
+
 ## `devicemotion`
 
 The device is represented as a point `(x, y, z)` in 3d space:
