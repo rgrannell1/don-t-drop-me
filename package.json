@@ -4,7 +4,7 @@
   "description": "I've long felt my phone should scream if I drop it, so here's a PWA for that purpose.",
   "main": "index.js",
   "scripts": {
-
+    "build": "echo 'no build required.'"
   },
   "repository": {
     "type": "git",

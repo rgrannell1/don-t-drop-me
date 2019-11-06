@@ -81,7 +81,7 @@ const onNoSupport = () => {
  * The application state.
 */
 const state = {
-  freefallEvents: 0
+  recentEvents: []
 }
 
 /**

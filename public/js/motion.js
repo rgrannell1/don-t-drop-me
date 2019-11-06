@@ -37,7 +37,20 @@ motion.isInFreefall = (magnitude, state) => {
     freefallLower,
     freefallUpper
   } = constants.thresholds
-  return magnitude > freefallLower && magnitude < freefallUpper
+
+  const isFreefall = magnitude > freefallLower && magnitude < freefallUpper
+
+  state.recentMagnitudes.push({
+    isFreefall,
+    magnitude
+  })
+
+  // -- maintain the buffer length.
+  if (state.recentMagnitudes.length > constants.thresholds.freefallEvents) {
+    state.recentMagnitudes = state.recentMagnitudes.slice(1)
+  }
+
+  return state.recentMagnitudes.every(data => data.isFreefall)
 }
 
 export default motion
