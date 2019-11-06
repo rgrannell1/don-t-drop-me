@@ -1,7 +1,7 @@
 
 const cached = [
   '/',
-  '/style.css',
+  '/css/style.css',
   '/manifest.webmanifest'
 ]
 
