@@ -3,6 +3,20 @@ import constants from './constants.js'
 
 const motion = {}
 
+
+/**
+ * Calculate the number of subsequent fall events needed to trigger a
+ * state change.
+ *
+ * @returns {number} the number of intervals
+ */
+motion.requiredFreefallEvents = () => {
+  const { interval } = DeviceMotionEvent
+
+  const requiredEvents = Math.floor(constants.thresholds.sampleTime / interval)
+  return Math.max(1, requiredEvents)
+}
+
 /**
  * Calculate the magnitude of the device's acceleration, given the
  * directional accelerations of the device.
@@ -19,19 +33,6 @@ motion.magnitude = acc => {
   const az = Math.pow(acc.z, 2)
 
   return Math.sqrt(ax + ay + az)
-}
-
-/**
- * Calculate the number of subsequent fall events needed to trigger a
- * state change.
- *
- * @returns {number} the number of intervals
- */
-const requiredSubsequentEvents = () => {
-  const { interval } = DeviceMotionEvent
-
-  const requiredEvents = Math.floor(constants.thresholds.sampleTime / interval)
-  return Math.max(1, requiredEvents)
 }
 
 /**
@@ -59,7 +60,7 @@ motion.isInFreefall = (magnitude, state) => {
   })
 
   // -- maintain the buffer length.
-  if (state.recentMagnitudes.length >= requiredSubsequentEvents()) {
+  if (state.recentMagnitudes.length >= requiredFreefallEvents()) {
     state.recentMagnitudes = state.recentMagnitudes.slice(1)
   }
 

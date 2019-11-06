@@ -32,28 +32,9 @@ const constants = {
   }
 }
 
-/**
- * Calculate the number of subsequent fall events needed to trigger a
- * state change.
- *
- * @returns {number} the number of intervals
- */
-const requiredSubsequentEvents = () => {
-  const { interval } = DeviceMotionEvent
-
-  const threshold = 60
-
-  const requiredEvents = Math.floor(threshold / interval)
-  requiredEvents
-
-
-  return interval < 30 ? 4 : 6
-}
-
 constants.thresholds = {
   freefallLower: 0.8 * constants.GRAVITY,
   freefallUpper: 1.2 * constants.GRAVITY,
-  freefallEvents: requiredSubsequentEvents(),
   sampleTime: 60
 }
 

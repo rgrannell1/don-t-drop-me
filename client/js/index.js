@@ -16,7 +16,7 @@ const onAcceleration = {}
 onAcceleration.freefall = state => {
   state.freefallEvents += 1
 
-  if (state.freefallEvents >= constants.thresholds.freefallEvents) {
+  if (state.freefallEvents >= motion.requiredFreefallEvents()) {
     scream.play()
 
     pages.index({
