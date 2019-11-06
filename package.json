@@ -1,0 +1,22 @@
+{
+  "name": "dont-drop-me",
+  "version": "1.0.0",
+  "description": "I've long felt my phone should scream if I drop it, so here's a PWA for that purpose.",
+  "main": "index.js",
+  "scripts": {
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rgrannell1/don-t-drop-me.git"
+  },
+  "author": "Róisin Grannell",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rgrannell1/don-t-drop-me/issues"
+  },
+  "homepage": "https://github.com/rgrannell1/don-t-drop-me#readme",
+  "devDependencies": {
+
+  }
+}

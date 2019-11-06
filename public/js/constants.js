@@ -23,6 +23,12 @@ const constants = {
   }
 }
 
+/**
+ * Calculate the number of subsequent fall events needed to trigger a
+ * state change.
+ *
+ * @returns {number} the number of intervals
+ */
 const requiredSubsequentEvents = () => {
   const { interval } = DeviceMotionEvent
 

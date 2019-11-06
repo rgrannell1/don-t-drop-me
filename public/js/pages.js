@@ -3,6 +3,14 @@ import { html, render } from 'https://unpkg.com/lit-html?module';
 
 const pages = {}
 
+/**
+ * Render the application page
+ *
+ * @name pages.index
+ *
+ * @param {object} data
+ * @param {DomElement} elem
+ */
 pages.index = (data, elem) => {
   const template = html`
     <main data-mode="${data.mode}">

@@ -7,6 +7,11 @@ import pages from './pages.js'
 
 const onAcceleration = {}
 
+/**
+ * @name onAcceleration.freefall
+ *
+ * @param {object} state
+ */
 onAcceleration.freefall = state => {
   state.freefallEvents += 1
 
@@ -19,6 +24,10 @@ onAcceleration.freefall = state => {
   }
 }
 
+/**
+ * @name onAcceleration.default
+ *
+ */
 onAcceleration.default = () => {
   state.freefallEvents = 0
 
@@ -29,6 +38,10 @@ onAcceleration.default = () => {
   })
 }
 
+/**
+ *
+ * @param {object} state
+ */
 const detectFall = state => {
   window.addEventListener('devicemotion', event => {
     const acc = event.acceleration
