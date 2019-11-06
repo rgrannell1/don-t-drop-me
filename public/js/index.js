@@ -1,6 +1,7 @@
 
 import constants from './constants.js'
 import motion from './motion.js'
+import scream from './scream.js'
 import pages from './pages.js'
 
 const onAcceleration = {}
@@ -16,8 +17,7 @@ onAcceleration.freefall = state => {
   state.freefallEvents += 1
 
   if (state.freefallEvents >= constants.thresholds.freefallEvents) {
-
-    new Audio('data/wilhelm.mp3').play()
+    scream.play()
 
     pages.index({
       mode: constants.modes.freefall,

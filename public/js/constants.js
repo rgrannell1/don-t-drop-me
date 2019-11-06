@@ -12,6 +12,9 @@ const constants = {
     normal: 'normal',
     freefall: 'freefall',
   },
+  urls: {
+    scream: 'https://raw.githubusercontent.com/rgrannell1/don-t-drop-me/master/public/data/wilhelm.mp3'
+  },
   faces: {
     normal: '(◕‿◕✿)',
     freefall: 'ಠ╭╮ಠ'
