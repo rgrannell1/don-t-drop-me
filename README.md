@@ -13,3 +13,4 @@ This is implemented using the `devicemotion` event. The device is represented as
 
 The `acceleration` vector will be `(0, 0, 0)` when the device is at rest. Dropping it will transform this vector with a vector `A = (ax, ay, az)`, with the magnitude `||A||` being `~9.81`
 
+To stop the audio triggering sporadically the app checks that a few samples (~150ms worth) indicate freefall simultaneously.
