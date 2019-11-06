@@ -22,6 +22,19 @@ motion.magnitude = acc => {
 }
 
 /**
+ * Calculate the number of subsequent fall events needed to trigger a
+ * state change.
+ *
+ * @returns {number} the number of intervals
+ */
+const requiredSubsequentEvents = () => {
+  const { interval } = DeviceMotionEvent
+
+  const requiredEvents = Math.floor(constants.thresholds.sampleTime / interval)
+  return Math.max(1, requiredEvents)
+}
+
+/**
  * Detect whether the device is in freefall given the current acceleration
  * magnitude and the application's state
  *
@@ -46,7 +59,7 @@ motion.isInFreefall = (magnitude, state) => {
   })
 
   // -- maintain the buffer length.
-  if (state.recentMagnitudes.length >= constants.thresholds.freefallEvents) {
+  if (state.recentMagnitudes.length >= requiredSubsequentEvents()) {
     state.recentMagnitudes = state.recentMagnitudes.slice(1)
   }
 

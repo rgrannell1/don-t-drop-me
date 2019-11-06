@@ -6,6 +6,8 @@ const scream = {}
 
 const state = {}
 
+const audio = new Audio(constants.urls.scream)
+
 /**
  * Play the scream audio, without playing it too often or while
  * the scream is already playing.
@@ -17,7 +19,7 @@ scream.play = () => {
   }
 
   state.playing = true
-  new Audio(constants.urls.scream).play()
+  audio.play()
 
   setTimeout(() => {
     state.playing = false
