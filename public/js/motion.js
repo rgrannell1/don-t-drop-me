@@ -46,7 +46,7 @@ motion.isInFreefall = (magnitude, state) => {
   })
 
   // -- maintain the buffer length.
-  if (state.recentMagnitudes.length > constants.thresholds.freefallEvents) {
+  if (state.recentMagnitudes.length >= constants.thresholds.freefallEvents) {
     state.recentMagnitudes = state.recentMagnitudes.slice(1)
   }
 

@@ -38,7 +38,7 @@ const constants = {
 const requiredSubsequentEvents = () => {
   const { interval } = DeviceMotionEvent
 
-  return interval < 30 ? 2 : 1
+  return interval < 30 ? 4 : 6
 }
 
 constants.thresholds = {

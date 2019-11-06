@@ -16,6 +16,9 @@ onAcceleration.freefall = state => {
   state.freefallEvents += 1
 
   if (state.freefallEvents >= constants.thresholds.freefallEvents) {
+
+    new Audio('data/wilhelm.mp3').play()
+
     pages.index({
       mode: constants.modes.freefall,
       face: constants.faces.freefall,
@@ -81,7 +84,7 @@ const onNoSupport = () => {
  * The application state.
 */
 const state = {
-  recentEvents: []
+  recentMagnitudes: []
 }
 
 /**

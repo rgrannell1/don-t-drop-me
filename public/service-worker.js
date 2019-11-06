@@ -2,6 +2,7 @@
 const cached = [
   '/',
   '/css/style.css',
+  '/data/wilhelm.mp3',
   '/manifest.webmanifest'
 ]
 
