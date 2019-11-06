@@ -1,6 +1,4 @@
 
-import { render } from 'https://unpkg.com/lit-html?module';
-
 import constants from './constants.js'
 import motion from './motion.js'
 import pages from './pages.js'
@@ -8,9 +6,11 @@ import pages from './pages.js'
 const onAcceleration = {}
 
 /**
+ * Update the application state when the device is in freefall.
+ *
  * @name onAcceleration.freefall
  *
- * @param {object} state
+ * @param {object} state the application state
  */
 onAcceleration.freefall = state => {
   state.freefallEvents += 1
@@ -25,6 +25,8 @@ onAcceleration.freefall = state => {
 }
 
 /**
+ * Render the application while in its default state.
+ *
  * @name onAcceleration.default
  *
  */
@@ -39,14 +41,14 @@ onAcceleration.default = () => {
 }
 
 /**
+ * Monitor the device's acceleration and render the application
+ * accordingly.
  *
- * @param {object} state
+ * @param {object} state the application state
  */
 const detectFall = state => {
   window.addEventListener('devicemotion', event => {
-    const acc = event.acceleration
-
-    if (motion.isInFreefall(motion.magnitude(acc), state)) {
+    if (motion.isInFreefall(motion.magnitude(event.acceleration), state)) {
       onAcceleration.freefall(state)
     } else {
       onAcceleration.default()
@@ -60,6 +62,10 @@ const detectFall = state => {
   })
 }
 
+/**
+ * Render the application when the devicemotion api's are unsupported
+ *
+ */
 const onNoSupport = () => {
   pages.index({
     mode: constants.modes.invalid,
@@ -68,11 +74,20 @@ const onNoSupport = () => {
   })
 }
 
+/**
+ * @constant
+ * @type {object}
+ *
+ * The application state.
+*/
 const state = {
   freefallEvents: 0
 }
 
-async function registerServiceWorker() {
+/**
+ * Register the application's service-worker
+ */
+const registerServiceWorker = async () => {
   try {
     const reg = await navigator.serviceWorker.register('../service-worker.js')
     console.log(`registered service-worker: scope is ${reg.scope}`)
@@ -81,6 +96,9 @@ async function registerServiceWorker() {
   }
 }
 
+/**
+ * Run the application
+ */
 async function main() {
   await registerServiceWorker()
 

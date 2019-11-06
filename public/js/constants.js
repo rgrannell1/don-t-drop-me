@@ -1,4 +1,10 @@
 
+/**
+ * @constant
+ * @type {object}
+ *
+ * Constants used by the application.
+*/
 const constants = {
   GRAVITY: 9.81,
   modes: {
