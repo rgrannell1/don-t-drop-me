@@ -1,12 +1,11 @@
-import * as path from 'path'
-import clean from 'clean-webpack-plugin'
-import webpack from 'webpack'
+const path = require('path')
+const clean = require('clean-webpack-plugin')
+const webpack = require('webpack')
+const dotenv = require('dotenv')
 
-import dotenv from 'dotenv'
+require('dotenv').config()
 
-dotenv.config()
-
-export default {
+module.exports = {
   mode: 'production',
   entry: {
     index: './client/js/index.js'
@@ -22,11 +21,11 @@ export default {
       ]
     }),
     new webpack.DefinePlugin({
-      __DISABLE_SERVICE_WORKER__: process.env.DISABLE_SERVICE_WORKER || false
+      __DISABLE_SERVICE_WORKER__: process.env.DISABLE_SERVICE_WORKER
     })
   ],
   devServer: {
-    contentBase: 'public/index.html',
+    contentBase: path.join(__dirname, 'public/index.html'),
     port: 6000
   }
 }

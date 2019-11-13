@@ -29,13 +29,13 @@ const constants = {
     freefall: {
       default: 'AAAAAAH!'
     }
-  }
+  },
+  sampleTime: 100
 }
 
 constants.thresholds = {
   freefallLower: 0.8 * constants.GRAVITY,
-  freefallUpper: 1.2 * constants.GRAVITY,
-  sampleTime: 60
+  freefallUpper: 1.2 * constants.GRAVITY
 }
 
 export default constants

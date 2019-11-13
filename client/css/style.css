@@ -1,7 +1,7 @@
 
 :root {
   --background-unsupported: #BDBDBD;
-  --background-normal: #66BB6A;
+  --background-normal:#4CAF50;
   --background-freefall: #F44336;
 }
 
@@ -18,28 +18,7 @@ main {
   display: grid;
   width: 100vw;
   height: 100vh;
-  font-size: 2em;
-}
-
-/* Tablet Styles */
-@media only screen and (min-width: 416px) and (max-width: 960px) {
-  main {
-    grid-template-columns: 1fr 4fr 1fr;
-  }
-}
-
-/* Desktop */
-@media only screen and (min-width: 961px) {
-  main {
-    grid-template-columns: 1fr 4fr 1fr;
-  }
-}
-
-/* Mobile Styles */
-@media only screen and (max-width: 415px) {
-  main {
-    grid-template-columns: 1fr 16fr 1fr;
-  }
+  font-size: 4em;
 }
 
 #face-text, #subtitle-text {
@@ -47,12 +26,12 @@ main {
 }
 
 #face-text {
-  grid-row: 1;
+  grid-row: 2;
   grid-column: 2;
 }
 
 #subtitle-text {
-  grid-row: 2;
+  grid-row: 3;
   grid-column: 2;
 }
 
@@ -66,4 +45,27 @@ main[data-mode="normal"] {
 
 main[data-mode="freefall"] {
   background: var(--background-freefall);
+}
+
+/* Tablet Styles */
+@media only screen and (min-width: 416px) and (max-width: 960px) {
+  main {
+    grid-template-columns: 1fr 4fr 1fr;
+  }
+}
+
+/* Desktop */
+@media only screen and (min-width: 961px) {
+  main {
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-rows: 2fr 1fr 1fr 2fr;
+  }
+}
+
+/* Mobile Styles */
+@media only screen and (max-width: 415px) {
+  main {
+    grid-template-columns: 1fr 16fr 1fr;
+    grid-template-rows: 2fr 1fr 1fr 2fr;
+  }
 }

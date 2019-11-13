@@ -103,7 +103,9 @@ const registerServiceWorker = async () => {
  * Run the application
  */
 async function main() {
-  await registerServiceWorker()
+  if (__DISABLE_SERVICE_WORKER__) {
+    await registerServiceWorker()
+  }
 
   if (window.DeviceMotionEvent) {
     detectFall(state)

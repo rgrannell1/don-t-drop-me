@@ -13,8 +13,11 @@ const motion = {}
 motion.requiredFreefallEvents = () => {
   const { interval } = DeviceMotionEvent
 
-  const requiredEvents = Math.floor(constants.thresholds.sampleTime / interval)
-  return Math.max(1, requiredEvents)
+  const requiredEvents = Math.floor(100 / interval)
+
+  return isNaN(requiredEvents)
+    ? 2
+    : Math.max(2, requiredEvents)
 }
 
 /**
@@ -60,7 +63,7 @@ motion.isInFreefall = (magnitude, state) => {
   })
 
   // -- maintain the buffer length.
-  if (state.recentMagnitudes.length >= requiredFreefallEvents()) {
+  if (state.recentMagnitudes.length >= motion.requiredFreefallEvents()) {
     state.recentMagnitudes = state.recentMagnitudes.slice(1)
   }
 
