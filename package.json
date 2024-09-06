@@ -21,7 +21,7 @@
   "homepage": "https://github.com/rgrannell1/don-t-drop-me#readme",
   "devDependencies": {
     "now": "16.4.4",
-    "reload": "^3.2.0",
+    "reload": "^3.3.0",
     "serve": "14.1.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.11.1"
