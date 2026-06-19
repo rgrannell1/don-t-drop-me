@@ -24,7 +24,7 @@
     "reload": "^3.4.2",
     "serve": "14.2.6",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.2.4"
+    "webpack-dev-server": "^5.2.5"
   },
   "dependencies": {
     "@rgrannell/pulp": "9.1.0",
